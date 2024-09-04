@@ -1,7 +1,7 @@
 package server
 
 import (
-	"net/http"
+	"ltf/internal/controller"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,9 +9,7 @@ import (
 func Run() {
 	router := gin.Default()
 
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.String(http.StatusOK, "Hello from gin!")
-	})
+	router.GET("/uploads", controller.GetUploadsHandler)
 
 	router.Run(":5000")
 }

@@ -9,12 +9,12 @@ deps:
 
 .PHONY: build
 build: deps
-	go build -o cmd/ltf.exe cmd/ltf/main.go
+	go build -o cmd/ltf.exe cmd/main.go
 
 
 .PHONY: run
 run: 
-	go run cmd/ltf/main.go
+	go run cmd/main.go
 
 
 .PHONY: clear

@@ -5,27 +5,12 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 func GetUploadsHandler(ctx *gin.Context) {
-	// files, err := pkg.GetFiles("")
-	// if err != nil {
-	// ctx.String(http.StatusInternalServerError, "Internal Serverv Error")
-	// }
-
-	// for index, file := range files {
-	// fmt.Printf("#%d: - %v\n", index, file)
-	// }
-
-	msg := "Hello from Gin!"
-
-	ctx.HTML(http.StatusOK, "index.html", gin.H{
-		"Title": "fraom controller",
-		"Msg":   msg,
-	})
+	ctx.HTML(http.StatusOK, "upload.html", gin.H{})
 }
 
 func GetFilesHandler(ctx *gin.Context) {
@@ -52,15 +37,21 @@ func GetFilesHandler(ctx *gin.Context) {
 	if fileInfo.IsDir() {
 		files, err := pkg.GetFiles(string(path))
 		if err != nil {
-			ctx.JSON(http.StatusInternalServerError, gin.H{
-				"time":  time.Now(),
-				"error": err.Error(),
+			// ctx.JSON(http.StatusInternalServerError, gin.H{
+			// "time":  time.Now(),
+			// "error": err.Error(),
+			// })
+			ctx.HTML(http.StatusOK, "index.html", gin.H{
+				"Files": files,
 			})
 			return
 		}
-		ctx.JSON(http.StatusOK, gin.H{
-			"time":  time.Now(),
-			"files": files,
+		// ctx.JSON(http.StatusOK, gin.H{
+		// "time":  time.Now(),
+		// "files": files,
+		// })
+		ctx.HTML(http.StatusOK, "index.html", gin.H{
+			"Files": files,
 		})
 		return
 	}

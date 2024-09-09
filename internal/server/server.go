@@ -10,12 +10,13 @@ func Run() {
 	router := gin.Default()
 
 	router.LoadHTMLFiles("././web/template/index.html")
+	router.LoadHTMLGlob("././web/template/*")
 
 	router.Static("/static", "././web/static/")
 
 	router.GET("/uploads", controller.GetUploadsHandler)
 
-	router.GET("/explorer/*filePath", controller.GetFilesHandler)
+	router.GET("/files/*filePath", controller.GetFilesHandler)
 
 	router.Run(":5000")
 }

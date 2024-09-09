@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LTF</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+    <script src="static/script.js"></script>
+</head>
+<body>
+    <h1 aling="center">
+        <strong>LTF | Local Transfer Files</strong>
+    </h1>
+    <form enctype="multipart/form-data" action="/uploads" method="POST">
+        <div class="wrapper">
+            <label for="files" class="drop-container" id="dropcontainer">
+                <span class="drop-title _font">Drop files here</span>
+                <span class="_font">or</span>
+                <input type="file" id="files" name="files" class="_font"required>
+                <div id="status"></div>
+            </label>
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <input type="submit" class="btn _font" value="Upload">
+        </div>
+    </form>
+</body>
+</html>

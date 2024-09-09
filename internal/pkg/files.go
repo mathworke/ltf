@@ -4,7 +4,15 @@ import (
 	"errors"
 	"os"
 	"runtime"
+	"strings"
 )
+
+type Files struct {
+	Name   string
+	IsDir  bool
+	Path   string
+	Extend string
+}
 
 func UserHomeDir() (string, error) {
 	env, enverr := "HOME", "$HOME"
@@ -27,14 +35,21 @@ func UserHomeDir() (string, error) {
 	return "", errors.New(enverr + " is not defined")
 }
 
-func GetFiles(path string) (files []string, err error) {
+func GetFiles(path string) (files []Files, err error) {
 	dir, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
 	}
 
 	for _, file := range dir {
-		files = append(files, file.Name())
+		partsFile := strings.Split(file.Name(), ".")
+		extend := partsFile[len(partsFile)-1]
+		files = append(files, Files{
+			Name:   file.Name(),
+			IsDir:  file.IsDir(),
+			Path:   file.Name(),
+			Extend: extend,
+		})
 	}
 
 	return files, nil

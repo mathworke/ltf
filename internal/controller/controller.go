@@ -1,23 +1,24 @@
 package controller
 
 import (
-	"fmt"
 	"ltf/internal/pkg"
 	"net/http"
+	"os"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 func GetUploadsHandler(ctx *gin.Context) {
-	files, err := pkg.GetUploadsFiles("")
-	if err != nil {
-		ctx.String(http.StatusInternalServerError, "Internal Serverv Error")
-	}
+	// files, err := pkg.GetFiles("")
+	// if err != nil {
+	// ctx.String(http.StatusInternalServerError, "Internal Serverv Error")
+	// }
 
-	for index, file := range files {
-		fmt.Printf("#%d: - %v\n", index, file)
-	}
+	// for index, file := range files {
+	// fmt.Printf("#%d: - %v\n", index, file)
+	// }
 
 	msg := "Hello from Gin!"
 
@@ -27,14 +28,43 @@ func GetUploadsHandler(ctx *gin.Context) {
 	})
 }
 
-func GetFiles(ctx *gin.Context) {
-	path := ctx.Request.URL.Path
+func GetFilesHandler(ctx *gin.Context) {
+	path := []byte(strings.Replace(ctx.Param("filePath"), "/", "\\", -1))
 
-	path = strings.Replace(path, "/explorer/", "", 1)
+	rootPath, err := pkg.UserHomeDir()
+	if err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
 
-	ctx.File(fmt.Sprintf("././root/%s", path))
+	path = append([]byte(rootPath), path...)
 
-	ctx.JSON(http.StatusOK, gin.H{
-		"debug": string(path),
-	})
+	fileInfo, err := os.Stat(string(path))
+	if err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	if fileInfo.IsDir() {
+		files, err := pkg.GetFiles(string(path))
+		if err != nil {
+			ctx.JSON(http.StatusInternalServerError, gin.H{
+				"time":  time.Now(),
+				"error": err.Error(),
+			})
+			return
+		}
+		ctx.JSON(http.StatusOK, gin.H{
+			"time":  time.Now(),
+			"files": files,
+		})
+		return
+	}
+
+	ctx.File(string(path))
+
 }

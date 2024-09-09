@@ -15,7 +15,7 @@ func Run() {
 
 	router.GET("/uploads", controller.GetUploadsHandler)
 
-	router.GET("/explorer/*url", controller.GetFiles)
+	router.GET("/explorer/*filePath", controller.GetFilesHandler)
 
 	router.Run(":5000")
 }

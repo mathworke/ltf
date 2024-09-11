@@ -143,7 +143,7 @@
             margin: 0;
             text-align: right;
         }
-        p.file-name, p.folder-name {
+        a.file-name, a.folder-name {
             margin: 5px 0 0 0;
             text-align: center;
 
@@ -151,6 +151,7 @@
             width: 70px; 
             overflow: hidden;
             text-overflow: ellipsis; 
+            text-decoration: none;
         }
         .image-preview {
             height: 48px;
@@ -294,10 +295,10 @@
 	<body>
         <div class="filemanger">
             <div class="top-menu">
-                <button onclick="openModel('newFile')" style="--btn-bg-color: rgb(190, 173, 16)"><i class="fa-solid fa-file-circle-plus"></i>Add files...</button>
-                <button onclick="openModel('newFolder')" style="--btn-bg-color: rgb(221, 202, 27)"><i class="fa-regular fa-folder-open"></i>Add folder</button>
-                <button onclick="openModel('rename')" style="--btn-bg-color:rgb(32, 175, 231);"><i class="fa-solid fa-pen-to-square"></i>Rename</button>
-                <button onclick="openModel('delete')" style="--btn-bg-color: rgb(238, 107, 107)"><i class="fa-solid fa-trash"></i>Delete</button>
+                <button disabled onclick="openModel('newFile')" style="--btn-bg-color: rgb(190, 173, 16)"><i class="fa-solid fa-file-circle-plus"></i>Add files...</button>
+                <button disabled onclick="openModel('newFolder')" style="--btn-bg-color: rgb(221, 202, 27)"><i class="fa-regular fa-folder-open"></i>Add folder</button>
+                <button disabled onclick="openModel('rename')" style="--btn-bg-color:rgb(32, 175, 231);"><i class="fa-solid fa-pen-to-square"></i>Rename</button>
+                <button disabled onclick="openModel('delete')" style="--btn-bg-color: rgb(238, 107, 107)"><i class="fa-solid fa-trash"></i>Delete</button>
                 <button disabled><i class="fa-solid fa-copy"></i>Copy</button>
                 <button disabled><i class="fa-solid fa-scissors"></i>Cut</button>
                 <button disabled><i class="fa-regular fa-paste"></i>Paste</button>
@@ -309,7 +310,7 @@
                     <button onclick="initFileManager('root/');"><i class="fa-solid fa-house"></i></button>
                 </div>
                 <div class="folder-path-write">
-                    <input type="text" value="/root/main/test-folder/" pattern="[A-Za-z0-9]+/[A-Za-z0-9]+" class="folder-path-input" onchange="initFileManager(event.target.value)">
+                    <input type="text" value="/root/" pattern="[A-Za-z0-9]+/[A-Za-z0-9]+" class="folder-path-input" onchange="initFileManager(event.target.value)">
                     <button onclick="clickedthisBtn(event);function clickedthisBtn(e){let i = e.target.closest('button').querySelector('i'); i.classList.add('fa-spin');setTimeout(() => {
                         i.classList.remove('fa-spin')
                     }, 2000);}"><i class="fa-solid fa-arrows-rotate" ></i></button>
@@ -318,21 +319,12 @@
             </div>
             <div class="filemanager-container-row">
                 {{- range .Files }}
-                    {{ if .IsDir }}
-                        <div title="{{ .Name }}" class="folder">
-                            <div class="folder-icon-container">
-                                <div class="folder-icon"></div>
-                            </div>
-                            <a class="folder-name" href="{{ .Path }}">{{ . }}</a>
+                    <div title="{{ .Name }}" class="file">
+                        <div class="doc-icon-container">
+                            <div class="doc-icon" style="--icon-color: 36, 230, 149;"><p>{{ .Extend }}</p></div>
                         </div>
-                    {{ else }}
-                        <div title="{{ .Name }}" class="file">
-                            <div class="doc-icon-container">
-                                <div class="doc-icon" style="--icon-color: 36, 230, 149;"><p>{{ .Extend }}</p></div>
-                            </div>
-                            <a class="file-name" href="{{ .Path }}">{{ .Name }}</a>
-                        </div>
-                    {{ end }}
+                        <a class="file-name" href="root/{{ .Path }}">{{ .Name }}</a>
+                    </div>
                 {{ end -}}
             </div>
         </div>

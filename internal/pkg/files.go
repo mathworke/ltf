@@ -2,9 +2,10 @@ package pkg
 
 import (
 	"errors"
+	"fmt"
+	"log"
 	"os"
 	"runtime"
-	"strings"
 )
 
 type Files struct {
@@ -35,21 +36,28 @@ func UserHomeDir() (string, error) {
 	return "", errors.New(enverr + " is not defined")
 }
 
-func GetFiles(path string) (files []Files, err error) {
-	dir, err := os.ReadDir(path)
+func GetFiles() (files []string, err error) {
+	HOME, err := UserHomeDir()
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+	rootPath := fmt.Sprintf("%s/root/", HOME)
+
+	dir, err := os.ReadDir(rootPath)
 	if err != nil {
 		return nil, err
 	}
 
 	for _, file := range dir {
-		partsFile := strings.Split(file.Name(), ".")
-		extend := partsFile[len(partsFile)-1]
-		files = append(files, Files{
-			Name:   file.Name(),
-			IsDir:  file.IsDir(),
-			Path:   file.Name(),
-			Extend: extend,
-		})
+		// partsFile := strings.Split(file.Name(), ".")
+		// extend := partsFile[len(partsFile)-1]
+		// files = append(files, Files{
+		// 	Name:   file.Name(),
+		// 	IsDir:  file.IsDir(),
+		// 	Path:   file.Name(),
+		// 	Extend: extend,
+		// })
+		files = append(files, file.Name())
 	}
 
 	return files, nil

@@ -13,6 +13,10 @@ func GetUploadsHandler(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "upload.html", gin.H{})
 }
 
+func GetIndedxPage(ctx *gin.Context) {
+	// files, err := files.GetFiles()
+}
+
 func GetFilesHandler(ctx *gin.Context) {
 	path := []byte(strings.Replace(ctx.Param("filePath"), "/", "\\", -1))
 
@@ -35,14 +39,14 @@ func GetFilesHandler(ctx *gin.Context) {
 	}
 
 	if fileInfo.IsDir() {
-		files, err := pkg.GetFiles(string(path))
+		// files, err := pkg.GetFiles(string(path))
 		if err != nil {
 			// ctx.JSON(http.StatusInternalServerError, gin.H{
 			// "time":  time.Now(),
 			// "error": err.Error(),
 			// })
 			ctx.HTML(http.StatusOK, "index.html", gin.H{
-				"Files": files,
+				// "Files": files,
 			})
 			return
 		}
@@ -51,7 +55,7 @@ func GetFilesHandler(ctx *gin.Context) {
 		// "files": files,
 		// })
 		ctx.HTML(http.StatusOK, "index.html", gin.H{
-			"Files": files,
+			// "Files": files,
 		})
 		return
 	}

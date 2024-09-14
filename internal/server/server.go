@@ -14,9 +14,9 @@ func Run() {
 
 	router.Static("/static", "././web/static/")
 
-	router.GET("/uploads", controller.GetUploadsHandler)
+	// router.GET("/", controller.GetIndexPage)
 
-	router.GET("/files/*filePath", controller.GetFilesHandler)
+	router.GET("/uploads", controller.GetUploadsHandler)
 
 	router.Run(":5000")
 }

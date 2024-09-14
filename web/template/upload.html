@@ -24,5 +24,15 @@
             <input type="submit" class="btn _font" value="Upload">
         </div>
     </form>
+
+    {{- range .Files }}
+        <div title="{{ .Name }}" class="file">
+            <div class="doc-icon-container">
+                <div class="doc-icon" style="--icon-color: 36, 230, 149;"><p>{{ .Extend }}</p></div>
+            </div>
+            <a class="file-name" href="root/{{ .Path }}">{{ .Name }}</a>
+        </div>
+    {{ end -}}
+
 </body>
 </html>

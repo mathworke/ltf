@@ -9,7 +9,7 @@ $form.addEventListener('submit', e => {
     const formData = new FormData($form)
 
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', 'http://127.0.0.1:5000/upload', true)
+    xhr.open('POST', 'http://192.168.3.14:5000/uploads', true)
 
     xhr.upload.addEventListener('progress', e => {
         const percent = (e.loaded / e.total) * 100

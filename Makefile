@@ -11,6 +11,10 @@ deps:
 build: deps
 	go build -o cmd/ltf.exe cmd/main.go
 
+.PHONY: build_linux
+build_linux: deps
+	go build -o cmd/ltf cmd/main.go
+
 
 .PHONY: run
 run: 

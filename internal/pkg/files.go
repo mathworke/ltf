@@ -15,6 +15,15 @@ type Files struct {
 	Extend string
 }
 
+func Rootpath() (rootPath string) {
+	HOME, err := UserHomeDir()
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+
+	return fmt.Sprintf("%s/root/", HOME)
+}
+
 func UserHomeDir() (string, error) {
 	env, enverr := "HOME", "$HOME"
 	switch runtime.GOOS {

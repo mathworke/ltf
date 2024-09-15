@@ -3,13 +3,14 @@ const $fileInput = document.querySelector('#files')
 const $progress = document.querySelector('#progress-bar')
 const $status = document.querySelector('#status')
 
+
 $form.addEventListener('submit', e => {
     e.preventDefault()
 
     const formData = new FormData($form)
 
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', 'http://192.168.3.14:5000/uploads', true)
+    xhr.open('POST', '/uploads', true)
 
     xhr.upload.addEventListener('progress', e => {
         const percent = (e.loaded / e.total) * 100

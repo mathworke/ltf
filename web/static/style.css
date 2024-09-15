@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
 body {
     font-family: 'Inter', sans-serif;
     font-optical-sizing: auto;
@@ -51,7 +54,7 @@ h1 {
 	display: inline-block;	
 	box-sizing: border-box;
 	/* padding: 0 24px; */
-	margin: 25px 0px;
+	margin: 25px 0px 0px 0px;
 	outline: none;
 	border: none;    
 	border-radius: 10px;
@@ -102,16 +105,22 @@ h1 {
     border-color: #111;
 }
 
-.drop-container:hover .drop-title {
+.drop-container:hover .drop-title, 
+.drop-container:hover .or {
     color: #111;
 }
 
-.drop-title {
+.drop-title, .or {
     /* color: #c4c4c4; */
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     transition: color .2s ease-in-out;
+}
+
+.or {
+    font-size: 14px;
+    font-weight: bold;
 }
 
 input[type=file]::file-selector-button {
@@ -160,4 +169,77 @@ input[type=file]:hover {
 
 #status:empty {
     display: none;
+}
+
+ul:empty {
+    display: none;
+}
+
+li {
+    display: grid;
+    align-items: center;
+
+    word-break: break-all;
+    word-break: break-word;
+
+    padding: 0.5rem;
+}
+
+li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+li a {
+    color: #444;
+}
+
+#recent-uploads li {
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+}
+
+.delete {
+/* input[type='submit'],
+input[type='file'] + label { */
+    cursor: pointer;
+    border: none;
+    background: #444;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 16px;
+
+    line-height: 1.25;
+
+    transition: background 64ms;
+
+    &:hover {
+        background: #606060;
+    }
+
+    &.danger {
+        background: transparent;
+
+        &:hover {
+            background: #FF763B;
+        }
+    }
+
+    &.icon {
+        padding: 0;
+        display: grid;
+        place-content: center;
+
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+a {
+    color: #0070f3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

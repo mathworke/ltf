@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"ltf/internal/pkg"
 	"ltf/internal/server"
@@ -11,11 +10,7 @@ import (
 func main() {
 
 	{
-		HOME, err := pkg.UserHomeDir()
-		if err != nil {
-			log.Fatalln(err.Error())
-		}
-		rootPath := fmt.Sprintf("%s/root/", HOME)
+		rootPath := pkg.Rootpath()
 		if _, err := os.Stat(rootPath); err != nil {
 			if os.IsNotExist(err) {
 				err = os.Mkdir(rootPath, 0777)

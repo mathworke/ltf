@@ -12,7 +12,7 @@ func Run() {
 	router.LoadHTMLFiles("././web/template/index.html")
 	router.LoadHTMLGlob("././web/template/*")
 	router.Static("/static", "././web/static/")
-	router.MaxMultipartMemory = 8 << 26 // 8 MiB
+	router.MaxMultipartMemory = 8 << 26 // 536 MiB
 
 	router.GET("/", controller.GetIndedxPage)
 	router.GET("/uploads", controller.GetUploadsFiles)

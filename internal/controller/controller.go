@@ -87,7 +87,6 @@ func UploadFile(ctx *gin.Context) {
 	}
 
 	ctx.Redirect(http.StatusFound, "/")
-	// ctx.HTML(http.StatusOK, "upload.html", gin.H{})
 }
 
 func DeleteFile(ctx *gin.Context) {
@@ -137,24 +136,12 @@ func GetFilesHandler(ctx *gin.Context) {
 	}
 
 	if fileInfo.IsDir() {
-		// files, err := pkg.GetFiles(string(path))
 		if err != nil {
-			// ctx.JSON(http.StatusInternalServerError, gin.H{
-			// "time":  time.Now(),
-			// "error": err.Error(),
-			// })
-			ctx.HTML(http.StatusOK, "index.html", gin.H{
-				// "Files": files,
-			})
+			ctx.HTML(http.StatusOK, "index.html", gin.H{})
 			return
 		}
-		// ctx.JSON(http.StatusOK, gin.H{
-		// "time":  time.Now(),
-		// "files": files,
-		// })
-		ctx.HTML(http.StatusOK, "index.html", gin.H{
-			// "Files": files,
-		})
+
+		ctx.HTML(http.StatusOK, "index.html", gin.H{})
 		return
 	}
 

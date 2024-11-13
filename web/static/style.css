@@ -8,7 +8,7 @@ body {
 
     line-height: 1.5;
     color: #333;
-    background-color: #808080;
+    background-color: #818181;
     margin: 0;
 
     padding: 1rem;
@@ -45,7 +45,6 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* padding-bottom: 50px; */
 }
 
 /* button */
@@ -53,7 +52,6 @@ h1 {
     width: 125px;
 	display: inline-block;	
 	box-sizing: border-box;
-	/* padding: 0 24px; */
 	margin: 25px 0px 0px 0px;
 	outline: none;
 	border: none;    
@@ -111,7 +109,6 @@ h1 {
 }
 
 .drop-title, .or {
-    /* color: #c4c4c4; */
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -145,7 +142,6 @@ input[type=file]::file-selector-button:hover {
 }
 
 input[type=file] {
-    /* display: none; */
     width: 350px;
     max-width: 100%;
     color: #444;
@@ -199,8 +195,6 @@ li a {
 }
 
 .delete {
-/* input[type='submit'],
-input[type='file'] + label { */
     cursor: pointer;
     border: none;
     background: #444;

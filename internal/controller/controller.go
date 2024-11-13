@@ -86,7 +86,8 @@ func UploadFile(ctx *gin.Context) {
 		return
 	}
 
-	ctx.HTML(http.StatusOK, "upload.html", gin.H{})
+	ctx.Redirect(http.StatusFound, "/")
+	// ctx.HTML(http.StatusOK, "upload.html", gin.H{})
 }
 
 func DeleteFile(ctx *gin.Context) {

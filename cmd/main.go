@@ -5,10 +5,12 @@ import (
 	"ltf/internal/pkg"
 	"ltf/internal/server"
 	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-
+	gin.SetMode(gin.ReleaseMode)
 	{
 		rootPath := pkg.Rootpath()
 		if _, err := os.Stat(rootPath); err != nil {

@@ -16,12 +16,17 @@ type Files struct {
 }
 
 func Rootpath() (rootPath string) {
-	HOME, err := UserHomeDir()
+	path, err := Workdir()
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
 
-	return fmt.Sprintf("%s/root/", HOME)
+	return fmt.Sprintf("%s/uploads/", path)
+}
+
+func Workdir() (string, error) {
+	dir, err := os.Getwd()
+	return dir, err
 }
 
 func UserHomeDir() (string, error) {
@@ -46,11 +51,7 @@ func UserHomeDir() (string, error) {
 }
 
 func GetFiles() (files []string, err error) {
-	HOME, err := UserHomeDir()
-	if err != nil {
-		log.Fatalln(err.Error())
-	}
-	rootPath := fmt.Sprintf("%s/root/", HOME)
+	rootPath := Rootpath()
 
 	dir, err := os.ReadDir(rootPath)
 	if err != nil {
